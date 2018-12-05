@@ -1,0 +1,17 @@
+#showtooltip
+/cast [stance:0] cheap shot;
+/cast [stance:1] cheap shot;
+/cast [stance:4] cheap shot;
+/cast [stance:2] Kidney Shot;
+/sw 24
+/sw play
+
+#comment:
+[stance:0] = Unstealthed
+[stance:1] = Stealth
+[stance:2] = Vanish
+[stance:3] = Shadow Dance
+
+This macro casts cheap shot if stealthed, kidney otherwise.
+Then it starts a 24 second stopwatch to track stun dr
+
