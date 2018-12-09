@@ -1,10 +1,13 @@
 <?php
     require_once("../functions.php");
-    $sequence =[1,0,2,4,1,1,3]; 
+    $spells=['mutilate','garrotte','rupture','envenom','toxicblade'];
 
-    $dps=simulateCastSqeuence($sequence,1000);
+    $sequence =[1,0,2,4,0,0,3]; //garrote, mutilate, rupture, toxicblde, mutilate, multilate, envenom
+    
+    $GLOBAL_LOG_LEVEL='debugg';
 
-
+    $dps=simulateCastSqeuence($sequence,60);
+    echo showIframe("timeseries.php",['timeseries'=>$dps],'rogue dps');
 
     function simulateCastSqeuence($sequence,$ntime=20){
         $spells=['mutilate','garrotte','rupture','envenom','toxicblade'];
@@ -22,8 +25,7 @@
         $spell_cooldown = [1,6,1,1,25];
         $max_energy=150;
         $initial_energy=$max_energy;
-                
-        
+
         $t=0;
         $spell_last_cast =[];
         $default_energy_regen=10;
@@ -33,13 +35,12 @@
         $active_dots=[];
         $active_combo_points=0;
         $totalDamageTimeSeries=[];
-
         for($t=0;$t<$ntime;$t++){
-            $totalDamageTimeSeries[$t]=$totalDamage;
-            echo "\nTime $t:";
+            $lastTotalData=$totalDamage;
+            $totalDamageTimeSeries[$t+1]=$totalDamage;
+            echo_line("Time $t:");
             $energy+=$default_energy_regen;
             if($energy>$max_energy) $energy=$max_energy;
-
             foreach($active_dots as $spell=>&$dot){
                 if($dot['remaining_duration'] > 0){
                     $dot['remaining_duration']--;
@@ -50,11 +51,11 @@
                 $dot_ticking = $dot_frequency!==0 && $t % $dot_frequency === 0;
                 if($dot_ticking) {
                     $spell_name = $spells[$spell];
-                    echo "\nDot tick on $spell_name";
+                    echo_line("Dot tick on $spell_name");
                     $totalDamage += $damage_over_time[$spell];
                     $energy += $dot_tick_energy_regen[$spell];
-                    echo "\nDoing ".$damage_over_time[$spell]." damage from dot tick.";
-                    echo "\nGaining ".$dot_tick_energy_regen[$spell]." genergy from dot tick";
+                    echo_line("Doing ".$damage_over_time[$spell]." damage from dot tick.");
+                    echo_line("Gaining ".$dot_tick_energy_regen[$spell]." genergy from dot tick");
                 }
             }
     
@@ -64,12 +65,12 @@
             $has_enough_combo_points=false;
 
             for($tries=0;$tries<10;$tries++){
-                echo "\nTrying to cast $spell_name, checking spell cooldown";
+                echo_line("Trying to cast $spell_name, checking spell cooldown");
                 $spell_on_cooldown = isset($spell_last_cast[$spell]) 
                     && (($t-$spell_last_cast[$spell]) >= $spell_cooldown[$spell]);     
                 $has_enough_combo_points = $active_combo_points >= $spell_cp_cost[$spell];
                 if($spell_on_cooldown || !$has_enough_combo_points){
-                    echo "\n$spell_name is on cooldown, checking next";
+                    echo_line("$spell_name is on cooldown, checking next");
                     $sequence_index++;
                     $spell=$sequence[$sequence_index % count($sequence)];
                     $spell_name=$spells[$spell];
@@ -78,14 +79,14 @@
                 }
             }
     
-            echo "\nTrying to cast $spell_name, checking energy and CP";
+            echo_line("Trying to cast $spell_name, checking energy and CP");
 
             $can_cast = $has_enough_combo_points 
                         && !$spell_on_cooldown
                         && $energy >= $spell_energy_cost[$spell];
                         
             if(!$can_cast){
-                echo "\nCannot cast $spell_name at $energy energy and $active_combo_points cp";
+                echo_line("Cannot cast $spell_name at $energy energy and $active_combo_points cp");
             }
     
             if($can_cast){
@@ -108,9 +109,9 @@
                 
                 $active_combo_points+=$initial_damage_combo_point_regen[$spell];
 
-                echo "\nDoing $damageDone damage for total of $totalDamage";
+                echo_line("Doing $damageDone damage for total of $totalDamage");
     
-                echo "\nGanning ".$initial_damage_combo_point_regen[$spell]." from $spell_name";
+                echo_line("Ganning ".$initial_damage_combo_point_regen[$spell]." from $spell_name");
     
                 if($dot_default_duration[$spell]){
                     $dot_duration_added = $dot_default_duration[$spell]+$dot_duration_per_cp_spent[$spell]*$combo_point_spent;
