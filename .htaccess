@@ -1,0 +1,5 @@
+Allow from All
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /stdin.php?path=$1 [NC,L,QSA]
