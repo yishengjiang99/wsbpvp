@@ -1,7 +1,88 @@
-<code><span style="color: #000000">
-<br /><span style="color: #0000BB">&lt;?php<br />date_default_timezone_set</span><span style="color: #007700">(</span><span style="color: #DD0000">"America/Los_Angeles"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Content-Type:&nbsp;text/event-stream;"</span><span style="color: #007700">,</span><span style="color: #0000BB">true</span><span style="color: #007700">,</span><span style="color: #0000BB">200</span><span style="color: #007700">);<br />while(</span><span style="color: #0000BB">true</span><span style="color: #007700">){<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$t</span><span style="color: #007700">=</span><span style="color: #0000BB">microtime</span><span style="color: #007700">();<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"event:&nbsp;tick\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"data:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">microtime</span><span style="color: #007700">().</span><span style="color: #DD0000">"&nbsp;</span><span style="color: #0000BB">$s2</span><span style="color: #DD0000">\n\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #0000BB">connection_aborted</span><span style="color: #007700">()&nbsp;)&nbsp;break;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ob_flush</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);</span><span style="color: #FF8000">//float(explode("&nbsp;",$t)[0])*10e6);<br /></span><span style="color: #007700">}<br /></span><span style="color: #0000BB">?&gt;<br /></span>
-</span>
-</code><code><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br />header</span><span style="color: #007700">(</span><span style="color: #DD0000">"Content-Type:&nbsp;text/event-stream"</span><span style="color: #007700">);<br />while(</span><span style="color: #0000BB">true</span><span style="color: #007700">){<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$t</span><span style="color: #007700">=</span><span style="color: #0000BB">microtime</span><span style="color: #007700">();<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"event:&nbsp;tick\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"data:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">microtime</span><span style="color: #007700">().</span><span style="color: #DD0000">"&nbsp;</span><span style="color: #0000BB">$s2</span><span style="color: #DD0000">\n\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #0000BB">connection_aborted</span><span style="color: #007700">()&nbsp;)&nbsp;break;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ob_flush</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">sleep</span><span style="color: #007700">(</span><span style="color: #0000BB">1</span><span style="color: #007700">);</span><span style="color: #FF8000">//float(explode("&nbsp;",$t)[0])*10e6);<br /></span><span style="color: #007700">}</span>
-</span>
+<code
+  ><span style="color: #000000">
+    <br /><span style="color: #0000bb"
+      >&lt;?php<br />date_default_timezone_set</span
+    ><span style="color: #007700">(</span
+    ><span style="color: #dd0000">"America/Los_Angeles"</span
+    ><span style="color: #007700">);<br /></span
+    ><span style="color: #0000bb">header</span
+    ><span style="color: #007700">(</span
+    ><span style="color: #dd0000">"Content-Type:&nbsp;text/event-stream;"</span
+    ><span style="color: #007700">,</span
+    ><span style="color: #0000bb">true</span
+    ><span style="color: #007700">,</span><span style="color: #0000bb">200</span
+    ><span style="color: #007700">);<br />while(</span
+    ><span style="color: #0000bb">true</span
+    ><span style="color: #007700">){<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">$t</span><span style="color: #007700">=</span
+    ><span style="color: #0000bb">microtime</span
+    ><span style="color: #007700">();<br />&nbsp;&nbsp;echo&nbsp;</span
+    ><span style="color: #dd0000">"event:&nbsp;tick\n"</span
+    ><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span
+    ><span style="color: #dd0000">"data:&nbsp;"</span
+    ><span style="color: #007700">.</span
+    ><span style="color: #0000bb">microtime</span
+    ><span style="color: #007700">().</span
+    ><span style="color: #dd0000">"&nbsp;</span
+    ><span style="color: #0000bb">$s2</span
+    ><span style="color: #dd0000">\n\n"</span
+    ><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(&nbsp;</span
+    ><span style="color: #0000bb">connection_aborted</span
+    ><span style="color: #007700">()&nbsp;)&nbsp;break;<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">ob_flush</span
+    ><span style="color: #007700">();<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">sleep</span
+    ><span style="color: #007700">(</span><span style="color: #0000bb">1</span
+    ><span style="color: #007700">);</span
+    ><span style="color: #ff8000"
+      >//float(explode("&nbsp;",$t)[0])*10e6);<br /></span
+    ><span style="color: #007700">}<br /></span
+    ><span style="color: #0000bb">?&gt;<br /></span>
+  </span> </code
+><code
+  ><span style="color: #000000">
+    <span style="color: #0000bb">&lt;?php<br />header</span
+    ><span style="color: #007700">(</span
+    ><span style="color: #dd0000">"Content-Type:&nbsp;text/event-stream"</span
+    ><span style="color: #007700">);<br />while(</span
+    ><span style="color: #0000bb">true</span
+    ><span style="color: #007700">){<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">$t</span><span style="color: #007700">=</span
+    ><span style="color: #0000bb">microtime</span
+    ><span style="color: #007700">();<br />&nbsp;&nbsp;echo&nbsp;</span
+    ><span style="color: #dd0000">"event:&nbsp;tick\n"</span
+    ><span style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;</span
+    ><span style="color: #dd0000">"data:&nbsp;"</span
+    ><span style="color: #007700">.</span
+    ><span style="color: #0000bb">microtime</span
+    ><span style="color: #007700">().</span
+    ><span style="color: #dd0000">"&nbsp;</span
+    ><span style="color: #0000bb">$s2</span
+    ><span style="color: #dd0000">\n\n"</span
+    ><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(&nbsp;</span
+    ><span style="color: #0000bb">connection_aborted</span
+    ><span style="color: #007700">()&nbsp;)&nbsp;break;<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">ob_flush</span
+    ><span style="color: #007700">();<br />&nbsp;&nbsp;</span
+    ><span style="color: #0000bb">sleep</span
+    ><span style="color: #007700">(</span><span style="color: #0000bb">1</span
+    ><span style="color: #007700">);</span
+    ><span style="color: #ff8000"
+      >//float(explode("&nbsp;",$t)[0])*10e6);<br /></span
+    ><span style="color: #007700">}</span>
+  </span>
 </code>
+<script>
+  function start() {
+    const clockdisplay = document.querySelector("div");
+    const evt = new EventSource("/clock.php");
+    evt.onopen = function (event) {
+      evt.addEventListener("tick", ({ data }) => {
+        clockdisplay.innerHTML = data.split(" ")[1];
+      });
+      evt.onclose(() => {
+        clockdisplay.innerHTML = "connection lost";
+      });
+    };
+  }
+</script>
