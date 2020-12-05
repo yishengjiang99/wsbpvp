@@ -1,10 +1,24 @@
-<?php
-$rr = require_once("rogue.php");
-$t=simulateCastSqeuence([1,0,2,4,0,0,3],200);
-echo $t;
-?>
-
 <html>
-  <body>
-    some new beginning
-<?php showIframe("timeseries.php?timeseries=1,2,3,4,5,6&title=2") ?>
+<head>
+<style><?php echo file_get_contents("style.css")?></style>
+</head>
+<body>
+<clock>
+
+</clock>
+<body>
+<script>
+const clockdisplay=document.querySelector("clock");
+
+const evt = new EventSource("/clock.php");
+evt.onopen = function(event) {
+	evt.addEventListener("tick",({data})=>{
+		clockdisplay.innerHTML = data.split(" ")[1];
+	})
+	evt.onclose(()=>{
+		clockdisplay.innerHTML='connection lost';
+	})
+
+}
+</script>
+</body>
