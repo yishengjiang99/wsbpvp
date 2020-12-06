@@ -14,7 +14,7 @@
 <body>
 <script>
   function start() {
-    const clockdisplay = document.querySelector("div#editor");
+    const clockdisplay = document.querySelector("div.editor");
     const evt = new EventSource("/clock.php");
     evt.onopen = function (event) {
       evt.addEventListener("tick", ({ data }) => {
