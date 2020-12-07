@@ -1,3 +1,6 @@
+<?php
+  $js=file_get_contents("https://grep32bit.blob.core.windows.net/\$web/index.js");
+?>
 <html>
 <head>
 <style><?php echo file_get_contents("style.css") ?></style>
